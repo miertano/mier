@@ -1,0 +1,528 @@
+1.  	sumlargest_main
+	
+#include <stdio.h>
+#include "sumlargest.c"
+
+int main()
+{
+	sumlargest();
+}
+
+
+	sumlargest.c
+
+
+void sumlargest()
+ {
+    int n, i;
+    int array[10];
+    int sum = 0, positive_sum = 0, negative_sum = 0;
+    float average;
+
+    printf("Enter the number of elements (max 10): ");
+    scanf("%d", &n);
+
+
+    if (n > 10 || n <= 0) {
+        printf("Invalid input. Please enter a number between 1 and 10.\n");
+        return;
+    }
+
+ 
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &array[i]);
+        sum += array[i];
+        if (array[i] > 0)
+            positive_sum += array[i];
+        else if (array[i] < 0)
+            negative_sum += array[i];
+    }
+
+ 
+    average = (float)sum / n;
+	
+    printf("Sum of all elements: %d\n", sum);
+    printf("Average of all elements: %.2f\n", average);
+    printf("Sum of positive elements: %d\n", positive_sum);
+    printf("Sum of negative elements: %d\n", negative_sum);
+}
+
+
+	
+2. 	largestwo_main
+
+#include <stdio.h>
+#include "largestwo.c"
+
+int main()
+{
+	largestwo();
+}
+
+
+
+	largestwo.c
+
+void largestwo() 
+{
+
+    int n, i;
+    int first, second;
+
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter the elements of the array:\n");
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    
+    if (arr[0] > arr[1]) {
+        first = arr[0];
+        second = arr[1];
+    } else {
+        first = arr[1];
+        second = arr[0];
+    }
+
+    
+    for (i = 2; i < n; i++) {
+        if (arr[i] > first) {
+            second = first;
+            first = arr[i];
+        } else if (arr[i] > second && arr[i] != first) {
+            second = arr[i];
+        }
+    }
+
+    printf("The largest element is: %d\n", first);
+    printf("The second largest element is: %d\n", second);
+}
+
+
+
+3. 	secondlargest_main
+
+#include <stdio.h>
+#include "secondlargest.c"
+
+int main()
+{
+	secondlargest();
+}
+
+
+	secondlargest.c
+
+void secondlargest()
+{
+    int size, i, j, temp;
+    printf("Enter the size of the array: ");
+    scanf("%d", &size);
+
+    int arr[size];
+    printf("Enter %d elements of the array:\n", size);
+    for (i = 0; i < size; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    
+    for (i = 0; i < size - 1; i++) {
+        for (j = i + 1; j < size; j++) {
+            if (arr[i] < arr[j]) {
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+
+ 
+    if (size < 2) {
+        printf("Array size too small to find second largest and smallest elements.\n");
+        return;
+    }
+
+    
+    int secondLargest = arr[1];
+    int secondSmallest = arr[size - 2];
+
+    printf("Second Largest Element: %d\n", secondLargest);
+    printf("Second Smallest Element: %d\n", secondSmallest);
+
+  
+    float average = (secondLargest + secondSmallest) / 2.0;
+    printf("Average of second largest and smallest: %.2f\n", average);
+
+
+    int found = 0;
+    for (i = 0; i < size; i++) {
+        if (arr[i] == (int)average) {
+            found = 1;
+            break;
+        }
+    }
+
+    if (found) {
+        printf("The average %.2f is found in the array.\n", average);
+    } else {
+        printf("The average %.2f is not found in the array.\n", average);
+    }
+}
+
+
+
+4. 	largestnumber_main
+
+#include <stdio.h>
+#include "largestnumber.c"
+
+int main()
+{
+	largestnumber();
+}
+
+
+
+	largestnumber.c
+
+void largestnumber() 
+{
+    int n;
+    
+	printf("Enter the size of the array: ");
+    scanf("%d", &n);
+
+    int arr[n]; 
+    printf("Enter %d elements:\n", n);
+    
+    int i;
+    for (i = 0; i < n; i++) 
+	{
+        scanf("%d", &arr[i]);
+    }
+
+    int largest = arr[0];
+    
+	for (i = 1; i < n; i++) 
+	{ 
+        if (arr[i] > largest) 
+		{
+            largest = arr[i];
+        }
+    }
+
+    printf("The largest number in the array is: %d\n", largest);
+	
+
+}
+
+
+
+5. 	insert_main
+
+#include <stdio.h>
+#include "insert.c"
+
+int main()
+{
+	insert();
+}
+
+
+	insert.c
+
+void insert()
+{
+
+    int capacity = 100; 
+    int arr[100], size, element, position, i;
+
+  
+    printf("Enter the size of the array (max %d): ", capacity - 1);
+    scanf("%d", &size);
+
+    if (size >= capacity) 
+	{
+        printf("Size exceeds maximum capacity.\n");
+        return;
+    }
+
+  
+    printf("Enter %d elements:\n", size);
+    for (i = 0; i < size; i++) 
+	{
+        scanf("%d", &arr[i]);
+    }
+
+ 
+    printf("Enter the element to insert: ");
+    scanf("%d", &element);
+
+ 
+    printf("Enter the position to insert (1 to %d): ", size + 1);
+    scanf("%d", &position);
+
+    if (position < 1 || position > size + 1) 
+	{
+        printf("Invalid position!\n");
+        return;
+    }
+
+  
+    for (i = size; i >= position; i--) 
+	{
+        arr[i] = arr[i - 1];
+    }
+
+   
+    arr[position - 1] = element;
+
+   
+    printf("Array after insertion:\n");
+    for (i = 0; i <= size; i++) 
+	{
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+
+
+6.	delete_main
+
+#include <stdio.h>
+#include "delete.c"
+
+int main() 
+{
+    int arr[] = {10, 20, 30, 40, 50};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int value;
+    int i; 
+
+    printf("Enter the element to delete: ");
+    scanf("%d", &value);
+
+    delete(arr, &size, value);
+    printf("Updated array: ");
+   
+    for (i = 0; i < size; i++) 
+	{ 
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+
+}
+
+	delete.c
+
+void delete(int arr[], int *size, int value) 
+{
+    int i, j;
+
+ 
+    if (*size == 0) 
+	{
+        printf("Array is empty.\n");
+        return;
+    }
+
+  
+    int found = 0;
+    for (i = 0; i < *size; i++) 
+	{
+        if (arr[i] == value) 
+		{
+            found = 1;
+           
+            for (j = i; j < *size - 1; j++) 
+			{
+                arr[j] = arr[j + 1];
+            }
+            printf("Element %d deleted successfully.\n", value);
+            break;
+        }
+    }
+
+    if (!found) 
+	{
+        printf("Element %d not found in the array.\n", value);
+    }
+}
+
+
+
+7.	sortingascending_main
+
+#include <stdio.h>
+#include "sortingascending.c"
+
+int main()
+{
+	sortingascending();
+}
+
+
+	sortingascending.c
+
+void sortingascending() 
+{
+    int n, i, j, temp;
+    int arr[10];  
+
+    printf("Enter the number of elements (less than or equal to 10): ");
+    scanf("%d", &n);
+
+    if (n > 10) 
+	{
+        printf("Array size should not exceed 10.\n");
+        return;
+    }
+
+ 
+    printf("Enter %d elements: \n", n);
+    for (i = 0; i < n; i++) 
+	{
+        scanf("%d", &arr[i]);
+    }
+
+ 
+    for (i = 0; i < n - 1; i++) 
+	{
+        for (j = 0; j < n - i - 1; j++) 
+		{
+            if (arr[j] > arr[j + 1]) 
+			{
+                
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+
+ 
+    printf("Sorted array in ascending order: \n");
+    for (i = 0; i < n; i++) 
+	
+	{
+        printf("%d ", arr[i]);
+    }
+    
+	printf("\n");
+}
+
+
+
+8.	sortnames_main
+
+#include <stdio.h>
+#include "sortnames.c" 
+
+int main() 
+{
+    sortnames();  
+}
+
+	
+	sortnames.c
+#include <stdio.h>
+
+#define MAX_NAMES 10
+#define MAX_LENGTH 50
+
+void sortnames() 
+{
+    char names[MAX_NAMES][MAX_LENGTH];
+    char temp[MAX_LENGTH];
+    int n, i, j;
+
+    
+    printf("Enter number of names: ");
+    scanf("%d", &n);
+
+    printf("Enter %d names:\n", n);
+    for (i = 0; i < n; i++) 
+	{
+        scanf("%s", names[i]);
+    }
+
+    for (i = 0; i < n - 1; i++) 
+	{
+        for (j = i + 1; j < n; j++)
+		 {
+            if (strcmp(names[i], names[j]) > 0) 
+			{
+                
+                strcpy(temp, names[i]);
+                strcpy(names[i], names[j]);
+                strcpy(names[j], temp);
+            }
+        }
+    }
+
+    printf("\nNames in alphabetical order:\n");
+    for (i = 0; i < n; i++) 
+	{
+        printf("%s\n", names[i]);
+    }
+}
+
+
+
+
+9. 	readsearch_main
+
+#include <stdio.h>
+#include "readsearch.c"
+
+int main() 
+{
+    int arr[] = {1, 3, 5, 7, 9, 11, 13, 15, 17, 19};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int key;
+   
+    printf("Enter a number to search: ");
+    scanf("%d", &key);
+	
+    readsearch(arr, n, key);
+}
+
+
+
+	readsearch.c
+
+#include <stdio.h>
+
+void readsearch(int arr[], int n, int key) 
+{
+    int low = 0, high = n - 1, mid;
+
+    while (low <= high) 
+	{
+        mid = low + (high - low) / 2;
+
+        		
+        if (arr[mid] == key) 
+		{
+            printf("Element %d found at index %d.\n", key, mid);
+            return;
+        }
+    
+	
+        if (arr[mid] < key)
+            low = mid + 1;
+      
+	   
+        else
+            high = mid - 1;
+    }
+
+    printf("Element %d not found.\n", key);
+}
+
