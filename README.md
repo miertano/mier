@@ -1,1 +1,123 @@
-# mier
+import java.util.Scanner;
+
+// Superclass
+class Animal {
+    String name;
+    String habitat;
+
+    // Constructor
+    Animal(String name, String habitat) {
+        this.name = name;
+        this.habitat = habitat;
+    }
+
+    // Method to display information
+    void displayInfo() {
+        System.out.println("Name: " + name);
+        System.out.println("Habitat: " + habitat);
+    }
+
+    // Method to make sound
+    void makeSound() {
+        System.out.println(name + " makes a sound.");
+    }
+}
+
+// Subclass for Mammals
+class clsMammal extends Animal {
+    clsMammal(String name, String habitat) {
+        super(name, habitat);
+    }
+
+    @Override
+    void makeSound() {
+        System.out.println(name + " says: Roar / Growl / Bark!");
+    }
+}
+
+// Subclass for Reptiles
+class clsReptiles extends Animal {
+    clsReptiles(String name, String habitat) {
+        super(name, habitat);
+    }
+
+    @Override
+    void makeSound() {
+        System.out.println(name + " says: Hiss!");
+    }
+}
+
+// Subclass for Birds
+class clsBirds extends Animal {
+    clsBirds(String name, String habitat) {
+        super(name, habitat);
+    }
+
+    @Override
+    void makeSound() {
+        System.out.println(name + " says: Chirp / Tweet!");
+    }
+}
+
+// Subclass for Amphibians
+class clsAmphibians extends Animal {
+    clsAmphibians(String name, String habitat) {
+        super(name, habitat);
+    }
+
+    @Override
+    void makeSound() {
+        System.out.println(name + " says: Croak!");
+    }
+}
+
+// Main class to test
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Mammal
+        System.out.print("Enter Mammal Name: ");
+        String mName = sc.nextLine();
+        System.out.print("Enter Mammal Habitat: ");
+        String mHabitat = sc.nextLine();
+        clsMammal mammal = new clsMammal(mName, mHabitat);
+
+        // Reptile
+        System.out.print("\nEnter Reptile Name: ");
+        String rName = sc.nextLine();
+        System.out.print("Enter Reptile Habitat: ");
+        String rHabitat = sc.nextLine();
+        clsReptiles reptile = new clsReptiles(rName, rHabitat);
+
+        // Bird
+        System.out.print("\nEnter Bird Name: ");
+        String bName = sc.nextLine();
+        System.out.print("Enter Bird Habitat: ");
+        String bHabitat = sc.nextLine();
+        clsBirds bird = new clsBirds(bName, bHabitat);
+
+        // Amphibian
+        System.out.print("\nEnter Amphibian Name: ");
+        String aName = sc.nextLine();
+        System.out.print("Enter Amphibian Habitat: ");
+        String aHabitat = sc.nextLine();
+        clsAmphibians amphibian = new clsAmphibians(aName, aHabitat);
+
+        // Output all
+        System.out.println("\n--- Animal Information ---");
+        mammal.displayInfo();
+        mammal.makeSound();
+
+        reptile.displayInfo();
+        reptile.makeSound();
+
+        bird.displayInfo();
+        bird.makeSound();
+
+        amphibian.displayInfo();
+        amphibian.makeSound();
+
+        sc.close();
+    }
+}
